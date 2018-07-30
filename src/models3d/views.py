@@ -3,6 +3,8 @@ from django.views.generic.base import View
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.conf import settings
+
 
 from .models import Model
 from .forms import ModelCreateForm
@@ -34,7 +36,12 @@ class ModelListView(ListView):
 
 class ModelsView(View):
     def post(self, request, *args, **kwargs):
-        return ModelCreateView.as_view()(request)
+        response = ModelCreateView.as_view()(request)
+        if Model.objects.filter(user=request.user).count() == settings.NB_MODEL_FOR_COLLECTOR:
+            from badges.models import Collector
+            Collector.objects.create(user=request.user)
+        return response
+
 
     def get(self, request, *args, **kwargs):
         return ModelListView.as_view()(request)

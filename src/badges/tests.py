@@ -3,7 +3,6 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 
 from models3d.models import Model
-
 from .models import Star, Collector, Pioneer
 
 
@@ -34,4 +33,6 @@ class BadgeTestCase(TestCase):
         self.assertTrue(Collector.objects.filter(user=self.user))
 
     def test_pioneer(self):
+        self.client.login(username=self.user.username, password='password')  # what is the event to create
+        #  the Pioneer entry ?
         self.assertTrue(Pioneer.objects.filter(user=self.user))

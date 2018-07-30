@@ -12,9 +12,10 @@ class Star(models.Model):
     class Meta:
         unique_together = ('user', 'model')
 
+
 class Collector(models.Model):
-    pass
+    user = models.OneToOneField(User)
 
 
 class Pioneer(models.Model):
-    pass
+    user = models.OneToOneField(User)
