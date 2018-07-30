@@ -12,7 +12,7 @@ SECRET_KEY = 'r2!&gzvv48fm%w@0x7$zks(rdui1uv09r298za%j!the!6#)7s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']  # for the test, don't do this in production
 
 
 # Application definition
@@ -114,3 +114,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_ROOT = 'data'
+
+NB_VIEWER_FOR_STAR = 100

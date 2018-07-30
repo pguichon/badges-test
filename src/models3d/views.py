@@ -44,3 +44,10 @@ class ModelDetailView(DetailView):
     queryset = Model.objects.all()
     slug_field = 'name'
     slug_url_kwarg = 'name'
+
+    def get(self, request, *args, **kwargs):
+        response = super(ModelDetailView, self).get(request, *args, **kwargs)
+        self.object.add_viewer()
+        return response
+
+
